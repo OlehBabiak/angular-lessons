@@ -1,0 +1,39 @@
+<div
+  class="course-card"
+  *ngIf='course'
+  [ngClass]="cardClasses()"
+>
+
+  <div
+    class="course-title"
+    [ngStyle]="cardStyle()"
+  >
+    {{cardIndex + " " + course.description }}
+  </div>
+  <img
+    width="300"
+    alt="Angular Logo"
+    *ngIf='isImageIsVisible(); else noImage'
+    [src]='course.iconUrl'
+  >
+
+  <ng-template #noImage>
+    <img
+      width='300'
+      src='https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-no-image-available-icon-flat.jpg'
+      alt='No Image'
+    >
+  </ng-template>
+
+  <div class="course-description">
+    {{ course.longDescription }}
+  </div>
+
+  <div class='course-category' [ngSwitch]='course.category'>
+    <div class='category' *ngSwitchCase="'BEGINNER'">Beginner</div>
+    <div class='category' *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+    <div class='category' *ngSwitchCase="'ADVANCED'">Advanced</div>
+    <div class='category' *ngSwitchDefault>All levels</div>
+  </div>
+  <button (click)='courseSelected.emit(course)'>View Course</button>
+</div>

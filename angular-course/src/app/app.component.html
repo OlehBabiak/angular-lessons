@@ -1,0 +1,40 @@
+<div class="top-menu">
+  <img
+    class="logo"
+    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
+  >
+</div>
+
+<div class='course-info'>
+  <h2>Course info</h2>
+  <div class='demo'>
+    <div>Today is: {{ startDate | date: 'dd MMM yyyy' }}</div>
+    <div>Price: {{ price | currency: 'EUR'}}</div>
+    <div>Percentage: {{ rate | percent}}</div>
+  </div>
+  <div><span class='info-title'>Description:</span> {{ course.description }}</div>
+  <div><span class='info-title'>Category:</span> {{ course.category }}</div>
+  <div><span class='info-title'>Full description:</span> {{ course.longDescription }}</div>
+  <br>
+<!--  <div *ngFor='let pair of singleCourse | keyvalue'>-->
+<!--      {{pair.key + ': ' + pair.value }}-->
+<!--  </div>-->
+</div>
+
+<div
+  class="courses"
+>
+  <course-card
+    *ngFor='
+  let course of courses | slice: 0: 4
+  index as i;
+'
+    (courseSelected)='onCourseSelected($event)'
+    [course]="course"
+    [cardIndex]="i + 1"
+  ></course-card>
+</div>
+
+
+
+
